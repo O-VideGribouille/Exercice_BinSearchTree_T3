@@ -122,22 +122,39 @@ int C_ArbreBinRech::ajoutNoeuds(s_arbre_bin* pArbre, int n_val)
 }
 
 
-
-int C_ArbreBinRech::suppNoeud(s_arbre_bin* pArbre ,int n_val)
+//V1 de suppNoeud, mais soucis de logique pour continuer sur cette lancé
+/*int C_ArbreBinRech::suppNoeud(s_arbre_bin* pArbre ,int n_val)
 {
 
 	auto ret = rechercheNoeud(pArbre->racine, n_val);
 
 	//Arbre vide
+	if (ret == NULL) {
+		return -1;
+	}
 
 	//Si la taille correspond à 1
+	if (taille == 1) {
+		auto tmp = pArbre->racine;
+		pArbre->racine = nullptr;
+		delete tmp;
+		taille--;
+		return 0;
+
+	}
 
 	//Si les sous-branche droite et gauche sont NULL
+	if (n_val < (*ret)->n_donnee)
+	{
+		//ne peux pas fonctionner
+		(*ret)->fgauche = suppNoeud(pArbre, ret->fgauche, n_val);
+
+	}
 
 	//Si les sous-branches sont différent de NULL
 
 	return 0;
-}
+}*/
 
 
 
@@ -168,6 +185,67 @@ s_noeud** C_ArbreBinRech::rechercheNoeud(s_noeud*& n, int n_val) const
 	}
 
 }
+
+s_noeud* C_ArbreBinRech::suppNoeud(s_arbre_bin* pArbre, s_noeud* courant, int n_val)
+{
+	
+	if (courant == nullptr) {
+		//Arbre vide
+		return courant;
+	}
+	else if(n_val < courant->n_donnee) {
+		//Si n_val < donnée du noeur courant sous-arbre G
+		courant->fgauche = suppNoeud(pArbre, courant->fgauche, n_val);
+
+	}
+	else if(n_val > courant->n_donnee) {
+		//Si n_val > donnée du noeur courant sous-arbre D
+		courant->fdroite = suppNoeud(pArbre, courant->fdroite, n_val);
+	}
+	else
+	{
+		if (courant->fgauche == nullptr) { //si enfant gauche = nullptr
+			return courant->fdroite;
+		}
+		else if (courant->fdroite == nullptr) { //si enfant droit = nullptr
+			return courant->fgauche;
+				
+		}
+		else {
+			//si enfant G et D sont différent de nullptr
+			s_noeud* succ = plusGrand(courant->fgauche);
+			if (courant != nullptr) {
+				courant->n_donnee = succ->n_donnee; //remplacement de la valeur à supprimer par le successeur
+				suppNoeud(pArbre, courant->fgauche, succ->n_donnee); //on supprime par recusivité la valeur doublon du successeur
+			}
+		}
+
+	}
+	
+	
+	return nullptr;
+}
+
+void C_ArbreBinRech::suppNoeudArbre(s_arbre_bin* pArbre, int n_val)
+{
+
+	assert(pArbre);
+	if (pArbre->racine) {
+		suppNoeud(pArbre, pArbre->racine, n_val);
+	}
+
+}
+
+s_noeud* C_ArbreBinRech::plusGrand(s_noeud* elem)
+{
+	s_noeud* courant = elem;
+	if (elem->fdroite == nullptr) {
+		return courant;
+	}
+
+	return plusGrand(courant->fdroite);
+}
+
 
 
 //V2 fonction rechercheNeoud

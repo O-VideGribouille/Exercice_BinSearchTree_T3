@@ -52,7 +52,10 @@ public :
 	//s_noeud* rechercheNoeud(s_noeud*& n, int n_val)const;
 
 	//Supprimer des noeuds
-	int suppNoeud(s_arbre_bin* pArbre, int n_val);
+	//int suppNoeud(s_arbre_bin* pArbre, int n_val); //V1
+	s_noeud* suppNoeud(s_arbre_bin* pArbre, s_noeud* courant, int n_val);//V2
+	void suppNoeudArbre(s_arbre_bin* pArbre, int n_val);
+	s_noeud* plusGrand(s_noeud* elem);
 
 	
 private :

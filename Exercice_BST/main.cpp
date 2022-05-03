@@ -51,14 +51,15 @@ int main() {
 	abr.parcPostfixe(pArbre->racine);
 	cout << endl;
 
-	cout << "Suppression de deux nouveaux noeuds :  et  " << endl;
-	//abr.ajoutNoeuds(pArbre, 9);
-	//abr.ajoutNoeuds(pArbre, 2);
+	cout << "Suppression de deux nouveaux noeuds : 3 et 23 " << endl;
+	abr.suppNoeudArbre(pArbre, 3);
+	abr.suppNoeudArbre(pArbre, 23);
 	cout << endl;
 	cout << endl;
 
-/*	cout << "Parcours Postfixe : " << endl;
+	cout << "Parcours Postfixe : " << endl;
 	abr.parcPostfixe(pArbre->racine);
 	cout << endl;
-*/
+
+
 };
