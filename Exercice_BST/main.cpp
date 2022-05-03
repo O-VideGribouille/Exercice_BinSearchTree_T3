@@ -22,6 +22,9 @@ int main() {
 	//Instanciation d'un arbre binaire de recherches
 	abr.inserArbreVide(pArbre, 11);
 
+	cout << "L'equilibrage de l'arbre est : " << abr.est_ce_ok(pArbre->racine);
+	cout << endl << endl;
+
 	cout << "Ajout de noeuds ... " << endl;
 	abr.ajoutNoeuds(pArbre, 20);
 	abr.ajoutNoeuds(pArbre, 15);
@@ -33,21 +36,27 @@ int main() {
 	cout << endl;
 	cout << "Parcours Prefixe : " << endl;
 	abr.parcPrefixe(pArbre->racine);
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+	
 
 	cout << "Parcours Postfixe : " << endl;
 	abr.parcPostfixe(pArbre->racine);
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+	
 
 
 	cout << "L'abre a une hauteur de : " << abr.HautMaxArbre(pArbre->racine) << " rangs.";
 	cout << endl;
 	cout << "L'abre a une taille de : " << abr.TailleArbre(pArbre->racine) << " noeuds.";
-	cout << endl;
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+
+
+	cout << "L'equilibrage de l'arbre est : " << abr.est_ce_ok(pArbre->racine);
+	cout << endl << endl;
+
+
+
+
 
 
 	cout << "Ajout de deux nouveaux noeuds : 9 et 2 " << endl;
@@ -57,14 +66,16 @@ int main() {
 
 	cout << "Parcours Postfixe : " << endl;
 	abr.parcPostfixe(pArbre->racine);
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+	
 	cout << "L'abre a une hauteur de : " << abr.HautMaxArbre(pArbre->racine) << " rangs.";
 	cout << endl;
 	cout << "L'abre a une taille de : " << abr.TailleArbre(pArbre->racine) << " noeuds.";
-	cout << endl;
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+
+
+	cout << "L'equilibrage de l'arbre est : " << abr.est_ce_ok(pArbre->racine);
+	cout << endl << endl << endl;
 
 
 	cout << "Suppression de quatre noeuds : 3, 4, 20 et 23 " << endl;
@@ -76,13 +87,15 @@ int main() {
 
 	cout << "Parcours Postfixe : " << endl;
 	abr.parcPostfixe(pArbre->racine);
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+	
 	cout << "L'abre a une hauteur de : " << abr.HautMaxArbre(pArbre->racine) << " rangs.";
 	cout << endl;
 	cout << "L'abre a une taille de : " << abr.TailleArbre(pArbre->racine) << " noeuds.";
-	cout << endl;
-	cout << endl;
+	cout << endl << endl;
+	
+
+	cout << "L'equilibrage de l'arbre est : " << abr.est_ce_ok(pArbre->racine);
 
 
 

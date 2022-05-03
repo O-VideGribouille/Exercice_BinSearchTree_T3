@@ -265,7 +265,7 @@ int C_ArbreBinRech::HautMaxArbre(s_noeud* n)
 
 	}
 
-	
+	//return n; // ne pas l'ajouter
 }
 
 int C_ArbreBinRech::TailleArbre(s_noeud* n)
@@ -278,6 +278,77 @@ int C_ArbreBinRech::TailleArbre(s_noeud* n)
 	{
 		return 1 + TailleArbre(n->fgauche) + TailleArbre(n->fdroite);
 	}
+
+	//return n; // ne pas l'ajouter
+}
+
+s_noeud* C_ArbreBinRech::rotation_droite(s_noeud* y)
+{
+	
+	s_noeud* n_val = NULL;
+	if (y != NULL && y->fgauche !=NULL) {
+
+		n_val = y->fgauche;
+		y->fgauche = n_val->fdroite;
+		n_val->fdroite = y;
+
+		return n_val;
+
+
+	}
+	else
+	{
+		return y;
+	}
+	
+}
+
+s_noeud* C_ArbreBinRech::rotation_gauche(s_noeud* x)
+{
+	s_noeud* n_val = NULL;
+
+	if (x != NULL && x->fdroite != NULL) {
+		n_val = x->fgauche;
+		x->fdroite = n_val->fgauche;
+		n_val->fgauche = x;
+
+		return n_val;
+
+	}
+	else
+	{
+		return x;
+	}
+
+}
+
+bool C_ArbreBinRech::est_ce_ok(s_noeud *n)
+{
+	bool ok = NULL;
+	int cptG = NULL;
+	int cptD = NULL;
+
+	if (n == NULL) {
+		ok = true;
+	}
+	else
+	{
+		cptG = TailleArbre(n->fgauche);
+		cptD = TailleArbre(n->fdroite);
+
+		if (cptG > 1 || cptD > 1) {
+			ok = false;
+		}
+		else if (est_ce_ok(n->fgauche) && est_ce_ok(n->fdroite)) {
+			ok = true;
+		}
+		else
+		{
+			ok = false;
+		}
+	}
+
+	return ok;
 }
 
 void C_ArbreBinRech::liberer(s_noeud** pRacine)

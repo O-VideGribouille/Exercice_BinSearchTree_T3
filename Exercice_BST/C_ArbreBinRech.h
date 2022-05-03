@@ -66,6 +66,11 @@ public :
 	int TailleArbre(s_noeud* n);
 
 
+	//Rotation simple
+	s_noeud* rotation_droite(s_noeud* y);
+	s_noeud* rotation_gauche(s_noeud* x);
+	bool est_ce_ok(s_noeud *n);
+	s_noeud* equilibrage(s_noeud* n_val);
 
 	//Libérer
 	void liberer(s_noeud** pRacine);
