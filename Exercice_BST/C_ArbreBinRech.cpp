@@ -248,6 +248,51 @@ s_noeud* C_ArbreBinRech::plusGrand(s_noeud* elem)
 
 
 
+
+int C_ArbreBinRech::HautMaxArbre(s_noeud* n)
+{
+		
+	if(n == nullptr) {
+		
+		return 0;
+	}
+	else
+	{
+		
+		return 1 + max(HautMaxArbre(n->fgauche), HautMaxArbre(n->fdroite));
+
+	}
+
+	
+}
+
+int C_ArbreBinRech::TailleArbre(s_noeud* n)
+{
+	if (n == nullptr) {
+
+		return 0;
+	}
+	else
+	{
+		return 1 + TailleArbre(n->fgauche) + TailleArbre(n->fdroite);
+	}
+}
+
+void C_ArbreBinRech::liberer(s_noeud** pRacine)
+{
+	s_noeud* racine = *pRacine;
+
+	if (racine != nullptr) {
+		liberer(&racine->fgauche);
+		liberer(&racine->fdroite);
+		free(racine);
+	}
+
+	*pRacine = nullptr;
+}
+
+
+
 //V2 fonction rechercheNeoud
 /*
 s_noeud* C_ArbreBinRech::rechercheNoeud(s_noeud*& n, int n_val) const

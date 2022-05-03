@@ -57,6 +57,18 @@ public :
 	void suppNoeudArbre(s_arbre_bin* pArbre, int n_val);
 	s_noeud* plusGrand(s_noeud* elem);
 
+
+	//Hauteur max de l'arbre
+	int HautMaxArbre(s_noeud* n);
+
+
+	//nombre de noeud total de l'arbre
+	int TailleArbre(s_noeud* n);
+
+
+
+	//Libérer
+	void liberer(s_noeud** pRacine);
 	
 private :
 	//s_noeud* racine;
