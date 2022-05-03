@@ -67,7 +67,7 @@ int main() {
 	cout << endl;
 
 
-	cout << "Suppression de deux nouveaux noeuds : 3 et 23 " << endl;
+	cout << "Suppression de quatre noeuds : 3, 4, 20 et 23 " << endl;
 	abr.suppNoeudArbre(pArbre, 3);
 	abr.suppNoeudArbre(pArbre, 23);
 	cout << endl;
@@ -75,8 +75,12 @@ int main() {
 	cout << "Parcours Postfixe : " << endl;
 	abr.parcPostfixe(pArbre->racine);
 	cout << endl;
-
-
+	cout << endl;
+	cout << "L'abre a une hauteur de : " << abr.HautMaxArbre(pArbre->racine) << " rangs.";
+	cout << endl;
+	cout << "L'abre a une taille de : " << abr.TailleArbre(pArbre->racine) << " noeuds.";
+	cout << endl;
+	cout << endl;
 
 
 

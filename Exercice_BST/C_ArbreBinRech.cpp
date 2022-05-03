@@ -8,7 +8,7 @@ C_ArbreBinRech::C_ArbreBinRech()
 
 C_ArbreBinRech::~C_ArbreBinRech()
 {
-	//liberer(racine)
+	//liberer(racine);
 }
 
 void C_ArbreBinRech::init(s_arbre_bin* pArbre)
@@ -226,6 +226,16 @@ s_noeud* C_ArbreBinRech::suppNoeud(s_arbre_bin* pArbre, s_noeud* courant, int n_
 	return nullptr;
 }
 
+s_noeud* C_ArbreBinRech::plusGrand(s_noeud* elem)
+{
+	s_noeud* courant = elem;
+	if (elem->fdroite == nullptr) {
+		return courant;
+	}
+
+	return plusGrand(courant->fdroite);
+}
+
 void C_ArbreBinRech::suppNoeudArbre(s_arbre_bin* pArbre, int n_val)
 {
 
@@ -236,15 +246,7 @@ void C_ArbreBinRech::suppNoeudArbre(s_arbre_bin* pArbre, int n_val)
 
 }
 
-s_noeud* C_ArbreBinRech::plusGrand(s_noeud* elem)
-{
-	s_noeud* courant = elem;
-	if (elem->fdroite == nullptr) {
-		return courant;
-	}
 
-	return plusGrand(courant->fdroite);
-}
 
 
 
