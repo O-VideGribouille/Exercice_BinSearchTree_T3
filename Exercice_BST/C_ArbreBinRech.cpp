@@ -1,0 +1,196 @@
+#include "C_ArbreBinRech.h"
+
+C_ArbreBinRech::C_ArbreBinRech()
+{
+	//racine = nullptr;
+	taille = 0;
+}
+
+C_ArbreBinRech::~C_ArbreBinRech()
+{
+	//liberer(racine)
+}
+
+void C_ArbreBinRech::init(s_arbre_bin* pArbre)
+{
+	pArbre->racine = NULL;
+}
+
+void C_ArbreBinRech::parcPrefixe(s_noeud* racine)
+{
+
+	if (racine != nullptr) {
+
+		traiter(racine);
+		parcPrefixe(racine->fgauche);
+		parcPrefixe(racine->fdroite);
+
+	}
+
+}
+
+void C_ArbreBinRech::parcPostfixe(s_noeud* racine)
+{
+
+	if (racine != nullptr) {
+
+		parcPostfixe(racine->fgauche);
+		parcPostfixe(racine->fdroite);
+		traiter(racine);
+
+	}
+
+}
+
+void C_ArbreBinRech::traiter(s_noeud* n)
+{
+
+	//cout << n->n_donnee, ", ";
+	printf("%d, ", n->n_donnee);
+
+}
+
+int C_ArbreBinRech::inserArbreVide(s_arbre_bin* pArbre, int n_val)
+{
+	
+	s_noeud* elem = NULL;
+	elem = (s_noeud*)malloc(sizeof(s_noeud));
+
+	//Si l'élément est vide, ne rien retourner
+	if (elem == NULL) {
+		
+		//cout << "L'arbre est vide" << endl;
+		return 0;
+	}
+	else //dans le cas contraire, mettre en place l'abre
+	{
+
+		elem->n_donnee = n_val;
+
+		elem->fgauche = NULL;
+		elem->fdroite = NULL;
+		pArbre->racine = elem;
+
+		return 1;
+
+	}
+
+}
+
+int C_ArbreBinRech::ajoutNoeuds(s_arbre_bin* pArbre, int n_val)
+{
+	
+	s_noeud* elem = NULL;
+	elem = (s_noeud*)malloc(sizeof(s_noeud));
+	
+	//
+	s_noeud* courant = pArbre->racine;
+	s_noeud* precedent = NULL;
+
+	elem->fdroite = NULL;
+	elem->fgauche = NULL;
+	elem->n_donnee = n_val;
+
+	//Pour trouver une place
+	while (courant)
+	{
+		precedent = courant;
+		if (elem->n_donnee < courant->n_donnee) {
+			courant = courant->fgauche;
+		}
+		else
+		{
+			courant = courant->fdroite;
+		}
+
+	}
+
+	//Celle-ci trouvée
+	//precedent pointe vers le parent de notre noeud à remplacer.
+	if (elem->n_donnee < precedent->n_donnee)
+	{
+		precedent->fgauche = elem;
+
+	}
+	else
+	{
+		precedent->fdroite = elem;
+	}
+	
+	
+	return 1;
+}
+
+
+
+int C_ArbreBinRech::suppNoeud(s_arbre_bin* pArbre ,int n_val)
+{
+
+	auto ret = rechercheNoeud(pArbre->racine, n_val);
+
+	//Arbre vide
+
+	//Si la taille correspond à 1
+
+	//Si les sous-branche droite et gauche sont NULL
+
+	//Si les sous-branches sont différent de NULL
+
+	return 0;
+}
+
+
+
+
+// V1 recherche noeud
+s_noeud* C_ArbreBinRech::recherche(s_arbre_bin* pArbre ,int n_val)
+{
+	return *rechercheNoeud(pArbre->racine,n_val);
+}
+
+s_noeud** C_ArbreBinRech::rechercheNoeud(s_noeud*& n, int n_val) const
+{
+	if (!n)	{
+		//Arbre vide
+		return NULL;
+	}
+	else if ((n->n_donnee) == n_val) {
+		//La valeur recherchée est stockée dans la racine
+		return &n;
+	}
+	else if (n_val < (n->n_donnee)) {
+		//La valeur recherchée est stockée dans le sous-arbre gauche
+		return rechercheNoeud(n->fgauche, n_val);
+	}
+	else {
+		//Sinon, la valeur recherchée est stockée dans le sous-arbre droit
+		return rechercheNoeud(n->fdroite, n_val);
+	}
+
+}
+
+
+//V2 fonction rechercheNeoud
+/*
+s_noeud* C_ArbreBinRech::rechercheNoeud(s_noeud*& n, int n_val) const
+{
+	cout << "entrée dans la fonction rechercherNoeud" << endl;
+
+	if (!n) {
+		//Arbre vide
+		return NULL;
+
+	}
+	else if ((n->n_donnee) == n_val) {
+		//La valeur recherchée est stockée dans la racine
+		return n;
+	}
+	else if (n_val < (n->n_donnee)) {
+		//La valeur recherchée est stockée dans le sous-arbre gauche
+		return rechercheNoeud(n->fgauche, n_val);
+	}
+	else {
+		//Sinon, la valeur recherchée est stockée dans le sous-arbre droit
+		return rechercheNoeud(n->fdroite, n_val);
+	}
+}*/
