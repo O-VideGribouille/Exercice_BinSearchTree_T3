@@ -70,6 +70,8 @@ int main() {
 	cout << "Suppression de quatre noeuds : 3, 4, 20 et 23 " << endl;
 	abr.suppNoeudArbre(pArbre, 3);
 	abr.suppNoeudArbre(pArbre, 23);
+	abr.suppNoeudArbre(pArbre, 20);
+	abr.suppNoeudArbre(pArbre, 4);
 	cout << endl;
 
 	cout << "Parcours Postfixe : " << endl;

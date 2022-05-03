@@ -223,7 +223,7 @@ s_noeud* C_ArbreBinRech::suppNoeud(s_arbre_bin* pArbre, s_noeud* courant, int n_
 	}
 	
 	
-	return nullptr;
+	return courant;
 }
 
 s_noeud* C_ArbreBinRech::plusGrand(s_noeud* elem)
